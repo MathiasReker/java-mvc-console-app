@@ -1,4 +1,4 @@
-package com.test;
+package com.tests;
 
 import com.app.App;
 import com.app.console.Console;

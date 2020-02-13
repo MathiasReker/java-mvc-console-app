@@ -1,6 +1,4 @@
-##############################
-## Java
-##############################
+# Java
 .mtj.tmp/
 *.class
 *.jar
@@ -9,9 +7,7 @@
 *.nar
 hs_err_pid*
 
-##############################
-## Maven
-##############################
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -24,9 +20,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-##############################
-## Gradle
-##############################
+# Gradle
 bin/
 build/
 .gradle
@@ -34,9 +28,7 @@ build/
 gradle-app.setting
 !gradle-wrapper.jar
 
-##############################
-## IntelliJ
-##############################
+# IntelliJ
 out/
 .idea/
 .idea_modules/
@@ -44,9 +36,7 @@ out/
 *.ipr
 *.iws
 
-##############################
-## Eclipse
-##############################
+# Eclipse
 .settings/
 bin/
 tmp/
@@ -61,9 +51,7 @@ local.properties
 .loadpath
 .factorypath
 
-##############################
-## NetBeans
-##############################
+# NetBeans
 nbproject/private/
 build/
 nbbuild/
@@ -72,18 +60,8 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
-##############################
-## OS X
-##############################
+# OS X
 .DS_Store
 
-##############################
-## EXECUTABLE
-##############################
+# EXECUTABLE
 *.exe
-
-##############################
-## LAUNCH4J
-##############################
-launch4j_config.xml
-launch4j.log

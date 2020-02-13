@@ -6,18 +6,36 @@ import java.util.Scanner;
 
 import com.app.models.Note;
 
+/**
+ * The console is the principal mean to interact with the user. 
+ * @author Joel Gorin
+ */
 public class Console {
 	
 	private static Scanner scanner;
 
+	/**
+	 * Print in console a text.
+	 * @param text to print.
+	 */
 	public static void print(String text) {
 		System.out.println(text);
 	}
 
+	/**
+	 * Print in console a text inline.
+	 * @param text to print.
+	 */
 	public static void printInline(String text) {
 		System.out.print(text);
 	}
 	
+	/**
+	 * Display a menu in console and return the user response.
+	 * @param menuTitle is the title of menu.
+	 * @param options is a list of options to display.
+	 * @return option selected by user.
+	 */
 	public static String displayMenu(String menuTitle, ArrayList<String> options) {
 		Console.print(menuTitle);
 		for (int i = 0; i < options.size(); i++) {
@@ -29,9 +47,10 @@ public class Console {
 	    	
 	    	while (value < 0 || value >= options.size()) {
 	    		Console.print("Try again!");
-	    		value = scanner.nextInt();
+				value = scanner.nextInt();
+				scanner.close(); 
 	    	}
-	    		    		
+			scanner.close(); 
 			return options.get(value);
 		} 
 	    catch (Exception ex) {
@@ -39,6 +58,12 @@ public class Console {
 	    }
 	}
 	
+	/**
+	 * Display a form and return the user response.
+	 * @param formTitle is the title of form.
+	 * @param inputs is a list of form inputs.
+	 * @return an ArrayList with user response. 
+	 */
 	public static ArrayList<String> displayForm(String formTitle, ArrayList<String> inputs) {
 		Console.print(formTitle);
 		ArrayList<String> responses = new ArrayList<>();
@@ -47,7 +72,8 @@ public class Console {
 				Console.print("\t" + input + ": ");
 				scanner = new Scanner(System.in);
 		    	String response = scanner.nextLine();
-		    	responses.add(response);
+				responses.add(response);
+				scanner.close();
 			}
 			return responses;
 		} 
@@ -56,6 +82,11 @@ public class Console {
 	    }
 	}
 	
+	/**
+	 * Print a note list in console.
+	 * @param listName is the name of list.
+	 * @param notes is the list of notes.
+	 */
 	public static void printNoteList(String listName, ArrayList<Note> notes) {
 		Console.print(listName.toUpperCase());
 		
@@ -85,6 +116,11 @@ public class Console {
 		}
 	}
 	
+	/**
+	 * Print a note list in console on public mode.
+	 * @param listName is the name of list.
+	 * @param notes is the list of notes.
+	 */
 	public static void printPublicNotes(ArrayList<Note> notes) {
 		Console.print("PUBLIC NOTES: ");
 		
@@ -111,18 +147,36 @@ public class Console {
 			consoleTable.printTable();
 		}
 	}
+
+	/**
+	 * Function waiting for the user to press Enter.
+	 */
+	public static void waitEnter() {
+		Console.print("[Press Enter]");
+		scanner = new Scanner(System.in);
+		String readLine = null;
+		do {
+			readLine = scanner.nextLine();
+		} while (!readLine.equals(""));
+		scanner.close();
+	}
 	
-	public static void cleanConsole() {
-		try {
+	/**
+	 * Clear the console.
+	 * @throws InterruptedException
+	 */
+	public static void cleanConsole()  {
+		try {			
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		} catch (InterruptedException | IOException ex) {
+			Console.print(ex.getMessage());
+		}
+	}
 
-	        if (System.getProperty("os.name").contains("Windows"))
-
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-	        else
-
-	            Runtime.getRuntime().exec("clear");
-
-	    } catch (IOException | InterruptedException ex) {}
+	/**
+	 * Close instances of Console.
+	 */
+	public static void close() {
+		scanner.close(); 
 	}
 }

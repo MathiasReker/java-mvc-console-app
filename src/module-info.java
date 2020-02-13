@@ -1,2 +1,0 @@
-module console_app {
-}

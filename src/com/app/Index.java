@@ -6,7 +6,6 @@ import com.app.models.accounts.AccountType;
 /**
  * Index is used to configure the program and run it.
  * @author Joel Gorin
- * 
  */
 public class Index {
 
